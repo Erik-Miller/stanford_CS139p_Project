@@ -19,7 +19,7 @@ struct EmojiMemoryGameView: View {
                     .onTapGesture {
                         self.viewModel.choose(card:card)
                 }
-            .padding(10)
+                .padding(10)
             }
         }
         .padding(10)
@@ -39,22 +39,24 @@ struct CardView: View {
         }
     }
     
-           
+    
     func body (for size: CGSize) -> some View {
         ZStack {
-                       
-                       if self.card.isFaceUp {
-                           RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
-                           RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
-                           Text(self.card.content).font(Font.largeTitle)
-                       }
-                       else {
-                           RoundedRectangle(cornerRadius: cornerRadius).fill()
-                       }
-                   }
-                   .font(Font.system(size: fontSize(for: size)))
-
-               }
+            
+            if self.card.isFaceUp {
+                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+                RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
+                Text(self.card.content).font(Font.largeTitle)
+            }
+            else {
+                if !card.isMatched{
+                    RoundedRectangle(cornerRadius: cornerRadius).fill()
+                }
+            }
+        }
+        .font(Font.system(size: fontSize(for: size)))
+        
+    }
     
     //MARK: - Drawing Constants
     
